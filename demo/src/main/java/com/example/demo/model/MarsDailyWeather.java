@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Objects;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -29,4 +31,17 @@ public class MarsDailyWeather {
     private String sunrise;
     private String min_gts_temp;
     private String max_gts_temp;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MarsDailyWeather that = (MarsDailyWeather) o;
+        return Objects.equals(terrestrialDate, that.terrestrialDate) && Objects.equals(sol, that.sol) && Objects.equals(ls, that.ls) && Objects.equals(season, that.season) && Objects.equals(min_temp, that.min_temp) && Objects.equals(max_temp, that.max_temp) && Objects.equals(sunset, that.sunset) && Objects.equals(sunrise, that.sunrise) && Objects.equals(min_gts_temp, that.min_gts_temp) && Objects.equals(max_gts_temp, that.max_gts_temp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(terrestrialDate, sol, ls, season, min_temp, max_temp, sunset, sunrise, min_gts_temp, max_gts_temp);
+    }
 }
